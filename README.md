@@ -73,7 +73,7 @@ If you use this code, please cite the paper (reference to be updated upon public
   title  = {Conformal Adaptive Martingales: simulation code},
   year   = {2026},
   doi    = {<ZENODO DOI>},
-  url    = {https://github.com/<USER>/<REPO>}
+  url    = {[https://github.com/<USER>/<REPO>](https://github.com/alaurenzi70/cam-changepoint.git)}
 }
 ```
 
