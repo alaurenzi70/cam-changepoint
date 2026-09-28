@@ -37,7 +37,7 @@ All experiments use fixed seeds derived deterministically from the scenario name
 | Figure 2 (Section 6.2) | 7.2 | `sim1_false_alarm_grid`, `make_sit1_figure` | `table_sit1_arl_nominal_vs_realized.csv`, `fig_sit1_arl.{png,pdf}` | < 1 hour |
 | Table 1 (Section 6.3) | 7.3 | `sim2_delay_matched_arl` | `table_sim2_delay_matched_arl.csv`, `table_sim2_calibration.csv` | hours |
 | Figure 3 (Section 6.4), Table S3 | 7.4 | `sim_level_shift_grid`, `make_figures` | `table_grid_level_shift.csv`, `table_grid_summary.csv`, `fig_regime.{png,pdf}` | several hours |
-| Figure 4 (Section 6.4) | 7.4 | `make_figures` (changepoint sweep) | `table_nu_dilution.csv`, `fig_nu_dilution.{png,pdf}` | ~1 hour |
+| Figure 4 (Section 6.4) | 7.4 | `make_figures` (changepoint sweep), `plot_nu_dilution` | `table_nu_dilution.csv`, `fig_nu_dilution.{png,pdf}` | ~1 hour |
 | Figure S1 | 7.1 | `make_pvalue_hist` | `fig_pvalue_hist.{png,pdf}` | minutes |
 | Table S1 | 7.5 | `sim3_phase2_estimators` | `table_sim3_phase2_estimators.csv` | hours |
 | Matched-ARL check (Section S5) | 7.5b | `sim3_matched_arl_check` | `table_sim3_matched_arl_check.csv` | hours |
