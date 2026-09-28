@@ -1422,6 +1422,19 @@ def make_regime_figure(out, save_dir=OUTPUT_DIR, style="bars", title=None,
     return _save_png_pdf(fig, save_dir, fname)
 
 
+def plot_nu_dilution(table, save_dir=OUTPUT_DIR):
+    """Figure 4 of the paper: conditional detection delay against the changepoint
+    location nu. `table` has columns nu, CAM, GlobalPlugin (table_nu_dilution.csv),
+    so the figure can be redrawn without re-running the sweep."""
+    fig, ax = plt.subplots(figsize=(6.4, 4.4))
+    ax.plot(table["nu"], table["CAM"], "o-", color="C0", label="CAM (two-stage, localised)")
+    ax.plot(table["nu"], table["GlobalPlugin"], "s-", color="C2", label="GlobalPlugin (global estimate)")
+    ax.set_xlabel(r"changepoint location $\nu$")
+    ax.set_ylabel("Conditional detection delay")
+    ax.legend(frameon=False); ax.grid(alpha=0.3); fig.tight_layout()
+    return _save_png_pdf(fig, save_dir, "fig_nu_dilution.png")
+
+
 def make_figures(out, save_dir=OUTPUT_DIR, nu_sweep=True,
                  nu_scenario=("Gamma(k=2)", 1.0), nus=(1, 25, 50, 100, 200, 400),
                  gamma_design=200, horizon_cal=1500, reps_cal=500,
@@ -1469,15 +1482,9 @@ def make_figures(out, save_dir=OUTPUT_DIR, nu_sweep=True,
             cam_d.append(_cond_delay(tc, nu, H)["mean_delay"])
             plug_d.append(_cond_delay(tp, nu, H)["mean_delay"])
 
-        fig, ax = plt.subplots(figsize=(6.4, 4.4))
-        ax.plot(nus, cam_d, "o-", color="C0", label="CAM (two-stage, localised)")
-        ax.plot(nus, plug_d, "s-", color="C2", label="GlobalPlugin (global estimate)")
-        ax.set_xlabel(r"$\nu$  (in-control observations before the shift)")
-        ax.set_ylabel("Conditional detection delay")
-        ax.legend(frameon=False); ax.grid(alpha=0.3); fig.tight_layout()
-        paths["nu_dilution"] = _save_png_pdf(fig, save_dir, "fig_nu_dilution.png")
-        pd.DataFrame({"nu": list(nus), "CAM": cam_d, "GlobalPlugin": plug_d}).to_csv(
-            os.path.join(save_dir, "table_nu_dilution.csv"), index=False)
+        table = pd.DataFrame({"nu": list(nus), "CAM": cam_d, "GlobalPlugin": plug_d})
+        table.to_csv(os.path.join(save_dir, "table_nu_dilution.csv"), index=False)
+        paths["nu_dilution"] = plot_nu_dilution(table, save_dir=save_dir)
 
     return paths
 
