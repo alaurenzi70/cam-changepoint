@@ -1,0 +1,20 @@
+{
+  "title": "Conformal Adaptive Martingales: simulation code",
+  "description": "Python code reproducing all numerical results, figures and tables of the paper 'Conformal Adaptive Martingales: Distribution-Free Sequential Change-Point Detection with Finite-Sample False Alarm Control' and of its Supplementary Material.",
+  "upload_type": "software",
+  "license": "MIT",
+  "version": "v1.0",
+  "creators": [
+    {"name": "Laurenzi, Andrea", "affiliation": "University of Milano-Bicocca"},
+    {"name": "Borrotti, Matteo", "affiliation": "University of Milano-Bicocca"},
+    {"name": "Demaria, Dario", "affiliation": "MEMC Electronic Materials S.p.A., A GlobalWafers Company, Novara, Italy"},
+    {"name": "Zippo, Valerio", "affiliation": "MEMC Electronic Materials S.p.A., A GlobalWafers Company, Novara, Italy"}
+  ],
+  "keywords": [
+    "sequential change-point detection",
+    "conformal prediction",
+    "e-detectors",
+    "test martingales",
+    "statistical process control"
+  ]
+}
