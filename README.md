@@ -5,21 +5,22 @@ Code accompanying the paper
 > A. Laurenzi, M. Borrotti, D. Demaria, V. Zippo.
 > *Conformal Adaptive Martingales: Distribution-Free Sequential Change-Point Detection with Finite-Sample False Alarm Control.*
 
-The repository reproduces every figure and table of Section 6 (Simulation study) of the paper and of its Supplementary Material.
+The repository reproduces every figure and table of Section 6 (Simulation study) of the paper and of its appendices.
 
 ## Contents
 
 | File | Description |
 |---|---|
 | `cam_grid6.py` | Library: online randomised conformal p-values, betting functions, e-CUSUM detectors (CAM one-sided/two-sided, fixed power, mixture power, global plug-in, oracle and Gaussian CUSUM), calibration routines and all experiments. |
-| `cam_simulations_section7.ipynb` | Reproducibility notebook, one section per experiment of Section 6 and of the Supplementary Material (notebook headings follow an earlier numbering; see the table below). |
+| `cam_mixture.py` | Section 6.4 experiments with MixturePower as a fourth method (level-shift grid, changepoint sweep and their figures). Imports `cam_grid6` without modifying it and uses the same seeds and calibration, so the other methods are reproduced exactly. |
+| `cam_simulations_section7.ipynb` | Reproducibility notebook, one section per experiment of Section 6 and of the appendices (notebook headings follow an earlier numbering; see the table below). |
 | `requirements.txt` | Python dependencies (versions used for the paper). |
 
 ## Installation
 
 ```bash
-git clone https://github.com/<USER>/<REPO>.git
-cd <REPO>
+git clone https://github.com/alaurenzi70/cam-changepoint.git
+cd cam-changepoint
 pip install -r requirements.txt
 ```
 
@@ -36,12 +37,14 @@ All experiments use fixed seeds derived deterministically from the scenario name
 | Figure 1 (Section 6.2) | 7.2 | `make_sim1_paper_figure` | `fig_sim1_fa.{png,pdf}` | tens of minutes |
 | Figure 2 (Section 6.2) | 7.2 | `sim1_false_alarm_grid`, `make_sit1_figure` | `table_sit1_arl_nominal_vs_realized.csv`, `fig_sit1_arl.{png,pdf}` | < 1 hour |
 | Table 1 (Section 6.3) | 7.3 | `sim2_delay_matched_arl` | `table_sim2_delay_matched_arl.csv`, `table_sim2_calibration.csv` | hours |
-| Figure 3 (Section 6.4), Table S3 | 7.4 | `sim_level_shift_grid`, `make_figures` | `table_grid_level_shift.csv`, `table_grid_summary.csv`, `fig_regime.{png,pdf}` | several hours |
-| Figure 4 (Section 6.4) | 7.4 | `make_figures` (changepoint sweep), `plot_nu_dilution` | `table_nu_dilution.csv`, `fig_nu_dilution.{png,pdf}` | ~1 hour |
-| Figure S1 | 7.1 | `make_pvalue_hist` | `fig_pvalue_hist.{png,pdf}` | minutes |
-| Table S1 | 7.5 | `sim3_phase2_estimators` | `table_sim3_phase2_estimators.csv` | hours |
-| Matched-ARL check (Section S5) | 7.5b | `sim3_matched_arl_check` | `table_sim3_matched_arl_check.csv` | hours |
-| Table S2 | 7.6 | `sim4_one_sided_vs_two_sided` | `table_sim4_one_sided_vs_two_sided.csv`, `table_sim4_calibration.csv` | ~1 hour |
+| Figure 3 (Section 6.4), Table G.1 | 7.4 | `cam_mixture.sim_level_shift_grid_mix`, `cam_mixture.make_regime_figure_mix` | `table_grid_level_shift_mix.csv`, `table_grid_summary_mix.csv`, `fig_regime.{png,pdf}` | < 1 hour (2 processes) |
+| Figure 4 (Section 6.4) | 7.4 | `cam_mixture.nu_sweep_mix`, `cam_mixture.plot_nu_dilution_mix` | `table_nu_dilution_mix.csv`, `fig_nu_dilution.{png,pdf}` | minutes |
+| Figure D.1 (Appendix D) | 7.1 | `make_pvalue_hist` | `fig_pvalue_hist.{png,pdf}` | minutes |
+| Table E.1 (Appendix E) | 7.5 | `sim3_phase2_estimators` | `table_sim3_phase2_estimators.csv` | hours |
+| Matched-ARL check (Appendix E) | 7.5b | `sim3_matched_arl_check` | `table_sim3_matched_arl_check.csv` | hours |
+| Table F.1 (Appendix F) | 7.6 | `sim4_one_sided_vs_two_sided` | `table_sim4_one_sided_vs_two_sided.csv`, `table_sim4_calibration.csv` | ~1 hour |
+
+The original three-method versions of the Section 6.4 experiments (`sim_level_shift_grid`, `make_figures`) remain available in `cam_grid6.py`; `cam_mixture.py` reproduces their numbers for CAM, Power(fixed), GlobalPlugin and the oracle.
 
 Every figure is saved both as PNG (for display) and as vector PDF (for the paper). If the CSV tables of a previous run are available in `cam_output/`, the last section of the notebook redraws all figures without re-running the long experiments.
 
@@ -74,8 +77,8 @@ If you use this code, please cite the paper (reference to be updated upon public
   author = {Laurenzi, Andrea and Borrotti, Matteo and Demaria, Dario and Zippo, Valerio},
   title  = {Conformal Adaptive Martingales: simulation code},
   year   = {2026},
-  doi    = {<ZENODO DOI>},
-  url    = {https://github.com/<USER>/<REPO>}
+  doi    = {10.5281/zenodo.23012177},
+  url    = {https://github.com/alaurenzi70/cam-changepoint}
 }
 ```
 
